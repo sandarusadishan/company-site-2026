@@ -233,6 +233,10 @@
     animation: marquee var(--marquee-duration, 50s) linear infinite;
   }
 
+  .animate-marquee-reverse {
+    animation: marquee var(--marquee-duration, 50s) linear infinite reverse;
+  }
+
   @keyframes marquee {
     from {
       transform: translateX(0);

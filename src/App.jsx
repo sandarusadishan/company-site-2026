@@ -11,10 +11,12 @@ import LoadingSpinner from "./components/ui/LoadingSpinner";
 // Lazy load pages for better performance
 const Home = lazy(() => import("./pages/Home"));
 const Products = lazy(() => import("./pages/Products"));
-const ProductAPIManager = lazy(() => import("./pages/products/APIManager"));
-const ProductIdentityServer = lazy(() => import("./pages/products/IdentityServer"));
-const ProductIntegrationPlatform = lazy(() => import("./pages/products/IntegrationPlatform"));
-const ProductCloudPlatform = lazy(() => import("./pages/products/CloudPlatform"));
+const ProductPOS = lazy(() => import("./pages/products/POS"));
+const ProductRestaurant = lazy(() => import("./pages/products/Restaurant"));
+const ProductHotel = lazy(() => import("./pages/products/Hotel"));
+const ProductHospital = lazy(() => import("./pages/products/Hospital"));
+const ProductPayroll = lazy(() => import("./pages/products/Payroll"));
+const ProductStudent = lazy(() => import("./pages/products/Student"));
 const Solutions = lazy(() => import("./pages/Solutions"));
 const SolutionBanking = lazy(() => import("./pages/solutions/Banking"));
 const SolutionHealthcare = lazy(() => import("./pages/solutions/Healthcare"));
@@ -26,6 +28,10 @@ const SolutionDevOps = lazy(() => import("./pages/solutions/DevOps"));
 const SolutionSecurity = lazy(() => import("./pages/solutions/Security"));
 const SolutionAI = lazy(() => import("./pages/solutions/AI"));
 const SolutionMicroservices = lazy(() => import("./pages/solutions/Microservices"));
+const SolutionDigitalMarketing = lazy(() => import("./pages/solutions/DigitalMarketing"));
+const SolutionCustomSoftware = lazy(() => import("./pages/solutions/CustomSoftware"));
+const SolutionMobileApps = lazy(() => import("./pages/solutions/MobileApps"));
+const SolutionWebDevelopment = lazy(() => import("./pages/solutions/WebDevelopment"));
 const Resources = lazy(() => import("./pages/Resources"));
 const Blog = lazy(() => import("./pages/resources/Blog"));
 const Documentation = lazy(() => import("./pages/resources/Documentation"));
@@ -53,10 +59,12 @@ const App = () => (
               <Route element={<MainLayout />}>
                 <Route path="/" element={<Home />} />
                 <Route path="/products" element={<Products />} />
-                <Route path="/products/api-manager" element={<ProductAPIManager />} />
-                <Route path="/products/identity-server" element={<ProductIdentityServer />} />
-                <Route path="/products/integration-platform" element={<ProductIntegrationPlatform />} />
-                <Route path="/products/cloud-platform" element={<ProductCloudPlatform />} />
+                <Route path="/products/pos-systems" element={<ProductPOS />} />
+                <Route path="/products/restaurant-management" element={<ProductRestaurant />} />
+                <Route path="/products/hotel-management" element={<ProductHotel />} />
+                <Route path="/products/hospital-management" element={<ProductHospital />} />
+                <Route path="/products/payroll-management" element={<ProductPayroll />} />
+                <Route path="/products/student-management" element={<ProductStudent />} />
                 <Route path="/solutions" element={<Solutions />} />
                 <Route path="/solutions/banking" element={<SolutionBanking />} />
                 <Route path="/solutions/healthcare" element={<SolutionHealthcare />} />
@@ -68,6 +76,10 @@ const App = () => (
                 <Route path="/solutions/security" element={<SolutionSecurity />} />
                 <Route path="/solutions/ai" element={<SolutionAI />} />
                 <Route path="/solutions/microservices" element={<SolutionMicroservices />} />
+                <Route path="/solutions/digital-marketing" element={<SolutionDigitalMarketing />} />
+                <Route path="/solutions/custom-software" element={<SolutionCustomSoftware />} />
+                <Route path="/solutions/mobile-apps" element={<SolutionMobileApps />} />
+                <Route path="/solutions/web-development" element={<SolutionWebDevelopment />} />
                 <Route path="/resources" element={<Resources />} />
                 <Route path="/resources/blog" element={<Blog />} />
                 <Route path="/resources/documentation" element={<Documentation />} />

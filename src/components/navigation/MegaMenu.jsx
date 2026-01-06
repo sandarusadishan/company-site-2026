@@ -23,9 +23,15 @@ import {
   Briefcase,
   Handshake,
   Info,
+  Megaphone,
 
   Download,
-  Camera
+  Camera,
+  Utensils,
+  BedDouble,
+  HeartPulse,
+  Wallet,
+  GraduationCap
 } from "lucide-react";
 
 import busy62 from "@/assets/exe/Busy21-Setup-6.2.exe";
@@ -36,12 +42,14 @@ const MegaMenu = ({ menuType }) => {
     Products: {
       columns: [
         {
-          title: "Our Products",
+          title: "Smart Industry Suite",
           items: [
-            { icon: Server, label: "API Manager", description: "Full lifecycle API management", href: "/products/api-manager" },
-            { icon: Shield, label: "Identity Server", description: "Enterprise identity & access management", href: "/products/identity-server" },
-            { icon: GitBranch, label: "Integration Platform", description: "Connect and automate workflows", href: "/products/integration-platform" },
-            { icon: Cloud, label: "Cloud Platform", description: "Scalable cloud infrastructure", href: "/products/cloud-platform" },
+            { icon: ShoppingCart, label: "POS Systems", description: "Retail & Sales Management", href: "/products/pos-systems" },
+            { icon: Utensils, label: "Restaurant Management", description: "F&B Operations 360", href: "/products/restaurant-management" },
+            { icon: BedDouble, label: "Hotel Management", description: "Hospitality & Reservations", href: "/products/hotel-management" },
+            { icon: HeartPulse, label: "Hospital Management", description: "Healthcare & Patient Care", href: "/products/hospital-management" },
+            { icon: Wallet, label: "Payroll Management", description: "HR & Salary Automation", href: "/products/payroll-management" },
+            { icon: GraduationCap, label: "Student Management", description: "Education & Campus Admin", href: "/products/student-management" },
           ],
         },
       ],
@@ -61,6 +69,7 @@ const MegaMenu = ({ menuType }) => {
         {
           title: "By Technology",
           items: [
+            { icon: Megaphone, label: "Digital Marketing", description: "Social media & branding", href: "/solutions/digital-marketing" },
             { icon: CloudCog, label: "Cloud", description: "Cloud-native solutions", href: "/solutions/cloud" },
             { icon: Settings, label: "DevOps", description: "CI/CD & automation", href: "/solutions/devops" },
             { icon: Lock, label: "Security", description: "Zero-trust architecture", href: "/solutions/security" },

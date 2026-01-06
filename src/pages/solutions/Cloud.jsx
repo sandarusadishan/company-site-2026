@@ -138,6 +138,64 @@ const CloudSolutions = () => {
         </div>
       </section>
 
+
+
+      {/* Cloud Platforms Section - Matches User Request */}
+      <section className="py-24 bg-white relative">
+        <div className="container mx-auto px-6 md:px-12 lg:px-16">
+           <div className="text-center mb-16 max-w-2xl mx-auto">
+              <h2 className="font-display text-3xl font-bold text-slate-900 mb-4">Supported Platforms</h2>
+              <p className="text-lg text-slate-600">We deploy on the infrastructure that best fits your needs.</p>
+           </div>
+           
+           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {/* AWS */}
+              <div className="group p-8 rounded-3xl bg-white border border-slate-200 hover:border-orange-500/50 hover:shadow-xl hover:shadow-orange-500/10 transition-all duration-300 text-center">
+                 <div className="h-16 w-16 mx-auto mb-6">
+                    <img src="https://cdn.simpleicons.org/amazonaws/FF9900" alt="AWS" className="w-full h-full object-contain" />
+                 </div>
+                 <h3 className="font-display text-xl font-bold text-slate-900 mb-3">Amazon Web Services</h3>
+                 <p className="text-sm text-slate-500 leading-relaxed">
+                   Leverage the industry-leading scalability and reliability of AWS for your applications.
+                 </p>
+              </div>
+
+              {/* Google Cloud */}
+              <div className="group p-8 rounded-3xl bg-white border border-slate-200 hover:border-blue-500/50 hover:shadow-xl hover:shadow-blue-500/10 transition-all duration-300 text-center">
+                 <div className="h-16 w-16 mx-auto mb-6">
+                    <img src="https://cdn.simpleicons.org/googlecloud/4285F4" alt="Google Cloud" className="w-full h-full object-contain" />
+                 </div>
+                 <h3 className="font-display text-xl font-bold text-slate-900 mb-3">Google Cloud Platform</h3>
+                 <p className="text-sm text-slate-500 leading-relaxed">
+                   Utilize Google's powerful infrastructure and cutting-edge data analytics and ML services.
+                 </p>
+              </div>
+
+              {/* Azure */}
+              <div className="group p-8 rounded-3xl bg-white border border-slate-200 hover:border-sky-600/50 hover:shadow-xl hover:shadow-sky-600/10 transition-all duration-300 text-center">
+                 <div className="h-16 w-16 mx-auto mb-6">
+                    <img src="https://cdn.simpleicons.org/microsoftazure/0078D4" alt="Azure" className="w-full h-full object-contain" />
+                 </div>
+                 <h3 className="font-display text-xl font-bold text-slate-900 mb-3">Microsoft Azure</h3>
+                 <p className="text-sm text-slate-500 leading-relaxed">
+                   Build, deploy, and manage applications with seamless integration into the Microsoft ecosystem.
+                 </p>
+              </div>
+
+              {/* Private / Open Servers */}
+              <div className="group p-8 rounded-3xl bg-white border border-slate-200 hover:border-indigo-500/50 hover:shadow-xl hover:shadow-indigo-500/10 transition-all duration-300 text-center">
+                 <div className="h-16 w-16 mx-auto mb-6 flex items-center justify-center bg-indigo-50 rounded-2xl">
+                    <Server className="w-8 h-8 text-indigo-600" />
+                 </div>
+                 <h3 className="font-display text-xl font-bold text-slate-900 mb-3">Private & Open Servers</h3>
+                 <p className="text-sm text-slate-500 leading-relaxed">
+                   Deploy on your own on-premise hardware or any open-source server for maximum control.
+                 </p>
+              </div>
+           </div>
+        </div>
+      </section>
+
       {/* Modern Statistics/Partners Section */}
       <section className="py-24 bg-stone-50 relative overflow-hidden">
         <div className="container mx-auto px-6 md:px-12 lg:px-16">
