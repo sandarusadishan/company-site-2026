@@ -20,7 +20,7 @@ const APIManager = () => {
       </Helmet>
 
       <section className="pt-32 pb-16 hero-gradient">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-6 md:px-12 lg:px-16">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -45,7 +45,7 @@ const APIManager = () => {
       </section>
 
       <section className="py-24 bg-background">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-6 md:px-12 lg:px-16">
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {features.map((feature, index) => (
               <motion.div
@@ -66,7 +66,7 @@ const APIManager = () => {
       </section>
 
       <section className="py-24 bg-secondary">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-6 md:px-12 lg:px-16">
           <div className="max-w-3xl mx-auto">
             <h2 className="font-display text-3xl font-bold text-foreground mb-8 text-center">Key Benefits</h2>
             <div className="space-y-4">

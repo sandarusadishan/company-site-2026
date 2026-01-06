@@ -43,7 +43,7 @@ const Blog = () => {
       </Helmet>
 
       <section className="pt-32 pb-16 hero-gradient">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-6 md:px-12 lg:px-16">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -60,7 +60,7 @@ const Blog = () => {
       </section>
 
       <section className="py-24 bg-background">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-6 md:px-12 lg:px-16">
           <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
             {posts.map((post, index) => (
               <motion.article

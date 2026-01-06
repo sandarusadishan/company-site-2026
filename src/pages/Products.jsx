@@ -49,7 +49,7 @@ const Products = () => {
 
       {/* Hero */}
       <section className="pt-32 pb-16 hero-gradient">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-6 md:px-12 lg:px-16">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -68,7 +68,7 @@ const Products = () => {
 
       {/* Products Grid */}
       <section className="py-24 bg-background">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-6 md:px-12 lg:px-16">
           <div className="space-y-16">
             {products.map((product, index) => (
               <motion.div
@@ -119,7 +119,7 @@ const Products = () => {
 
       {/* CTA */}
       <section className="py-20 bg-secondary">
-        <div className="container mx-auto px-4 text-center">
+        <div className="container mx-auto px-6 md:px-12 lg:px-16 text-center">
           <h2 className="font-display text-3xl font-bold text-foreground mb-4">
             Not sure which product is right for you?
           </h2>

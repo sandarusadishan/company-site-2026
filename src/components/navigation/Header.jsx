@@ -27,11 +27,13 @@ const Header = () => {
   }, [location.pathname]);
 
   const navItems = [
-    { label: "Products", href: "/products", hasMegaMenu: true },
     { label: "Solutions", href: "/solutions", hasMegaMenu: true },
+    { label: "Products", href: "/products", hasMegaMenu: true },
     { label: "Resources", href: "/resources", hasMegaMenu: true },
     { label: "Company", href: "/company/about", hasMegaMenu: true },
   ];
+
+  const isContactPage = location.pathname === "/company/contact";
 
   return (
     <header
@@ -40,17 +42,17 @@ const Header = () => {
           : "bg-transparent"
         }`}
     >
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-6 md:px-12 lg:px-16">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-2">
+          <Link to="/" className="flex items-center gap-2 min-w-0 flex-shrink">
             <motion.div
               whileHover={{ scale: 1.05 }}
-              className="flex items-center gap-2"
+              className="flex items-center gap-2 min-w-0 overflow-hidden"
             >
-              <img src={logo} alt="SoftVision IT Logo" className="h-10 w-auto object-contain" />
-              <span className={`font-display font-bold text-xl ${isScrolled ? "text-foreground" : "text-white"}`}>
-                SoftVision IT Group (Pvt) Ltd
+              <img src={logo} alt="SoftVision IT Logo" className="h-8 md:h-10 w-auto object-contain flex-shrink-0" />
+              <span className={`font-display font-bold text-base sm:text-lg md:text-xl truncate ${isScrolled ? "text-foreground" : "text-white"}`}>
+                SoftVision IT Group
               </span>
             </motion.div>
           </Link>
@@ -85,29 +87,32 @@ const Header = () => {
             ))}
           </nav>
 
-          {/* Desktop CTA */}
-          <div className="hidden lg:flex items-center gap-3">
-            <Button 
-              variant="ghost" 
-              className={`${isScrolled ? "text-foreground/80 hover:text-foreground" : "text-white/80 hover:text-white"}`} 
-              asChild
-            >
-              <Link to="/company/contact">Contact Us</Link>
-            </Button>
-          </div>
+          {/* Right Side Actions */}
+          <div className="flex items-center gap-2 md:gap-3">
+            {/* Desktop CTA */}
+            <div className="hidden lg:flex items-center gap-3">
+              <Button 
+                variant="ghost" 
+                className={`${isScrolled ? "text-foreground/80 hover:text-foreground" : "text-white/80 hover:text-white"}`} 
+                asChild
+              >
+                <Link to="/company/contact">Contact Us</Link>
+              </Button>
+            </div>
 
-          {/* Mobile Menu Toggle */}
-          <button
-            className="lg:hidden p-2 rounded-lg hover:bg-secondary/50 transition-colors"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            aria-label="Toggle menu"
-          >
-            {isMobileMenuOpen ? (
-              <X className="h-6 w-6 text-foreground" />
-            ) : (
-              <Menu className="h-6 w-6 text-foreground" />
-            )}
-          </button>
+            {/* Mobile Menu Toggle */}
+            <button
+              className="lg:hidden p-2 rounded-lg hover:bg-secondary/50 transition-colors"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              aria-label="Toggle menu"
+            >
+              {isMobileMenuOpen ? (
+                <X className={`h-6 w-6 ${isScrolled ? "text-foreground" : "text-white"}`} />
+              ) : (
+                <Menu className={`h-6 w-6 ${isScrolled ? "text-foreground" : "text-white"}`} />
+              )}
+            </button>
+          </div>
         </div>
       </div>
 
@@ -132,6 +137,16 @@ const Header = () => {
                 </Link>
               ))}
               <div className="pt-4 border-t border-border space-y-3">
+                <Button 
+                  variant="outline" 
+                  className="w-full"
+                  onClick={() => {
+                    setIsMobileMenuOpen(false);
+                    setTimeout(() => document.getElementById('busy-downloads')?.scrollIntoView({ behavior: 'smooth' }), 300);
+                  }}
+                >
+                  Busy Software
+                </Button>
                 <Button variant="outline" className="w-full" asChild>
                   <Link to="/company/contact">Contact Us</Link>
                 </Button>

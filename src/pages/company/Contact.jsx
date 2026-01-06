@@ -8,23 +8,53 @@ import { Label } from "@/components/ui/label";
 import { useState } from "react";
 import { toast } from "@/hooks/use-toast";
 
+import emailjs from '@emailjs/browser';
+
 const Contact = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    
-    toast({
-      title: "Message sent!",
-      description: "We'll get back to you within 24 hours.",
-    });
-    
-    setIsSubmitting(false);
-    e.target.reset();
+
+        const serviceID = 'service_gamwh5i';
+        const templateIDToCompany = 'template_srzk65p';
+        const templateIDToCustomer = 'template_r0mj5x6';
+        const publicKey = 'D84ebfog3xQ0S44I8';
+
+    const templateParams = {
+      first_name: e.target.firstName.value,
+      last_name: e.target.lastName.value,
+      from_name: `${e.target.firstName.value} ${e.target.lastName.value}`,
+      email: e.target.email.value,
+      company: e.target.company.value,
+      message: e.target.message.value,
+      reply_to: e.target.email.value,
+    };
+
+    try {
+      // Send to Company
+      await emailjs.send(serviceID, templateIDToCompany, templateParams, publicKey);
+      
+      // Send Confirmation to Customer
+      await emailjs.send(serviceID, templateIDToCustomer, templateParams, publicKey);
+      
+      toast({
+        title: "Message sent!",
+        description: "We have received your message and sent you a confirmation.",
+      });
+      
+      e.target.reset();
+    } catch (error) {
+      console.error("Email Error:", error);
+      toast({
+        title: "Error",
+        description: "Failed to send message. Please try again or contact us directly.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -119,7 +149,7 @@ const Contact = () => {
                   <div className="grid sm:grid-cols-2 gap-4">
                     <div className="space-y-2">
                       <Label htmlFor="firstName">First Name</Label>
-                      <Input id="firstName" placeholder="John" required />
+                      <Input id="firstName" placeholder="Name" required />
                     </div>
                     <div className="space-y-2">
                       <Label htmlFor="lastName">Last Name</Label>
@@ -129,7 +159,7 @@ const Contact = () => {
 
                   <div className="space-y-2">
                     <Label htmlFor="email">Email</Label>
-                    <Input id="email" type="email" placeholder="john@company.com" required />
+                    <Input id="email" type="email" placeholder="example@gmail.com" required />
                   </div>
 
                   <div className="space-y-2">

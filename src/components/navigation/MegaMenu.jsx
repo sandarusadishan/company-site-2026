@@ -22,8 +22,14 @@ import {
   Users,
   Briefcase,
   Handshake,
-  Info
+  Info,
+
+  Download,
+  Camera
 } from "lucide-react";
+
+import busy62 from "@/assets/exe/Busy21-Setup-6.2.exe";
+import busy122 from "@/assets/exe/Busy21-Setup-12.2.exe";
 
 const MegaMenu = ({ menuType }) => {
   const menuContent = {
@@ -83,9 +89,21 @@ const MegaMenu = ({ menuType }) => {
           title: "About Us",
           items: [
             { icon: Info, label: "About", description: "Our story & mission", href: "/company/about" },
-            { icon: Users, label: "Leadership", description: "Meet our team", href: "/company/leadership" },
+            { icon: Camera, label: "Gallery", description: "Life at SoftVision", href: "/company/gallery" },
+            { icon: Users, label: "Leadership", description: "Meet our executives", href: "/company/leadership" },
             { icon: Briefcase, label: "Careers", description: "Join our team", href: "/company/careers" },
             { icon: Handshake, label: "Partners", description: "Partner ecosystem", href: "/company/partners" },
+          ],
+        },
+      ],
+    },
+    Busy: {
+      columns: [
+        {
+          title: "Busy21 Accounting Software",
+          items: [
+            { icon: Download, label: "Busy21 Standard v6.2", description: "Direct setup for version 6.2", href: busy62, isDownload: true },
+            { icon: Download, label: "Busy21 Advanced v12.2", description: "Direct setup for version 12.2", href: busy122, isDownload: true },
           ],
         },
       ],
@@ -112,23 +130,44 @@ const MegaMenu = ({ menuType }) => {
               </h3>
               <div className="space-y-1">
                 {column.items.map((item) => (
-                  <Link
-                    key={item.label}
-                    to={item.href}
-                    className="group flex items-start gap-3 p-3 rounded-xl hover:bg-secondary transition-colors"
-                  >
-                    <div className="flex-shrink-0 p-2 rounded-lg bg-secondary group-hover:bg-accent/10 transition-colors">
-                      <item.icon className="h-5 w-5 text-accent" />
-                    </div>
-                    <div>
-                      <p className="font-medium text-foreground group-hover:text-accent transition-colors">
-                        {item.label}
-                      </p>
-                      <p className="text-sm text-muted-foreground">
-                        {item.description}
-                      </p>
-                    </div>
-                  </Link>
+                  item.isDownload ? (
+                    <a
+                      key={item.label}
+                      href={item.href}
+                      download
+                      className="group flex items-start gap-3 p-3 rounded-xl hover:bg-secondary transition-colors"
+                    >
+                      <div className="flex-shrink-0 p-2 rounded-lg bg-secondary group-hover:bg-accent/10 transition-colors">
+                        <item.icon className="h-5 w-5 text-accent" />
+                      </div>
+                      <div>
+                        <p className="font-medium text-foreground group-hover:text-accent transition-colors">
+                          {item.label}
+                        </p>
+                        <p className="text-sm text-muted-foreground">
+                          {item.description}
+                        </p>
+                      </div>
+                    </a>
+                  ) : (
+                    <Link
+                      key={item.label}
+                      to={item.href}
+                      className="group flex items-start gap-3 p-3 rounded-xl hover:bg-secondary transition-colors"
+                    >
+                      <div className="flex-shrink-0 p-2 rounded-lg bg-secondary group-hover:bg-accent/10 transition-colors">
+                        <item.icon className="h-5 w-5 text-accent" />
+                      </div>
+                      <div>
+                        <p className="font-medium text-foreground group-hover:text-accent transition-colors">
+                          {item.label}
+                        </p>
+                        <p className="text-sm text-muted-foreground">
+                          {item.description}
+                        </p>
+                      </div>
+                    </Link>
+                  )
                 ))}
               </div>
             </div>

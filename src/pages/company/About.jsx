@@ -1,7 +1,7 @@
 import { Helmet } from "react-helmet-async";
-import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { Target, Users, Globe, Award, ArrowRight } from "lucide-react";
+import { motion } from "framer-motion";
+import { Target, Users, Globe, Award, ArrowRight, History, Rocket, Building } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const About = () => {
@@ -19,6 +19,13 @@ const About = () => {
     { value: "1000+", label: "Customers" },
   ];
 
+  const history = [
+    { year: "2015", title: "Inception", description: "Founded in Colombo with a vision to revolutionize enterprise IT." },
+    { year: "2018", title: "Regional Expansion", description: "Opened offices in Singapore and Dubai to serve Asian markets." },
+    { year: "2021", title: "Cloud Native", description: "Launched our flagship Cloud Platform, redefining scalability." },
+    { year: "2024", title: "Global Reach", description: "Crossed 1000+ enterprise customers across 50 countries." },
+  ];
+
   return (
     <>
       <Helmet>
@@ -26,26 +33,36 @@ const About = () => {
         <meta name="description" content="Learn about SoftVision IT Group's mission to empower enterprises with cutting-edge software solutions. Our story, values, and global impact." />
       </Helmet>
 
-      <section className="pt-32 pb-16 hero-gradient">
-        <div className="container mx-auto px-4">
+      {/* Hero Section */}
+      <section className="relative pt-32 pb-20 overflow-hidden bg-[#0f172a] text-white">
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:40px_40px] opacity-20" />
+        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-amber-500/10 rounded-full blur-[120px] translate-x-1/3 -translate-y-1/3" />
+        
+        <div className="container mx-auto px-6 md:px-12 lg:px-16 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            className="max-w-3xl mx-auto text-center"
+            className="max-w-4xl mx-auto text-center"
           >
-            <h1 className="font-display text-4xl md:text-6xl font-bold text-primary-foreground mb-6">
-              About SoftVision IT Group
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-400 text-sm font-medium mb-6">
+                 <Building className="h-4 w-4" />
+                 Since 2015
+            </div>
+            <h1 className="font-display text-4xl md:text-6xl font-bold mb-6">
+              Building the <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-200 to-yellow-500">Gold Standard</span> <br/>
+              of Enterprise Software
             </h1>
-            <p className="text-xl text-primary-foreground/70">
-              Empowering enterprises to build the future of digital infrastructure.
+            <p className="text-xl text-slate-400 mb-8 leading-relaxed">
+              We started with a simple belief: Enterprise software doesn't have to be clunky. 
+              Today, we power the digital infrastructure of the world's leading organizations.
             </p>
           </motion.div>
         </div>
       </section>
 
       {/* Stats */}
-      <section className="py-16 bg-background border-b border-border">
-        <div className="container mx-auto px-4">
+      <section className="py-16 bg-[#1e293b] border-y border-white/5">
+        <div className="container mx-auto px-6 md:px-12 lg:px-16">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {stats.map((stat, index) => (
               <motion.div
@@ -56,25 +73,24 @@ const About = () => {
                 transition={{ delay: index * 0.1 }}
                 className="text-center"
               >
-                <div className="font-display text-3xl md:text-4xl font-bold text-accent mb-2">
+                <div className="font-display text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-b from-white to-slate-400 mb-2">
                   {stat.value}
                 </div>
-                <div className="text-muted-foreground">{stat.label}</div>
+                <div className="text-amber-500 font-medium uppercase tracking-wider text-sm">{stat.label}</div>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Mission */}
-      <section className="py-24 bg-background">
-        <div className="container mx-auto px-4">
+      {/* Mission & Values */}
+      <section className="py-24 bg-[#0f172a] text-white relative">
+        <div className="container mx-auto px-6 md:px-12 lg:px-16">
           <div className="max-w-3xl mx-auto text-center mb-16">
-            <h2 className="font-display text-3xl font-bold text-foreground mb-4">Our Mission</h2>
-            <p className="text-lg text-muted-foreground leading-relaxed">
+            <h2 className="font-display text-3xl md:text-4xl font-bold mb-6">Our DNA</h2>
+            <p className="text-lg text-slate-400 leading-relaxed">
               We believe that every enterprise deserves access to world-class software infrastructure. 
-              Our mission is to democratize enterprise technology, making it accessible, secure, and 
-              scalable for organizations of all sizes.
+              Our mission is to democratize technology, making it accessible, secure, and scalable.
             </p>
           </div>
 
@@ -86,31 +102,62 @@ const About = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className="p-6 rounded-2xl bg-card border border-border text-center"
+                whileHover={{ y: -5 }}
+                className="p-8 rounded-2xl bg-white/5 border border-white/10 hover:border-amber-500/50 hover:bg-white/10 transition-all duration-300"
               >
-                <value.icon className="h-12 w-12 text-accent mx-auto mb-4" />
-                <h3 className="font-display text-xl font-semibold text-foreground mb-2">{value.title}</h3>
-                <p className="text-muted-foreground">{value.description}</p>
+                <value.icon className="h-10 w-10 text-amber-500 mb-6" />
+                <h3 className="font-display text-xl font-bold text-white mb-3">{value.title}</h3>
+                <p className="text-slate-400">{value.description}</p>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
+      {/* History Timeline */}
+      <section className="py-24 bg-[#1e293b] relative overflow-hidden">
+         <div className="absolute top-0 left-0 w-full h-full bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10" />
+         <div className="container mx-auto px-6 md:px-12 lg:px-16 relative z-10">
+            <h2 className="font-display text-3xl md:text-4xl font-bold text-white mb-16 text-center">Our Journey</h2>
+            <div className="relative border-l-2 border-white/10 ml-4 md:ml-1/2 space-y-12">
+               {history.map((item, index) => (
+                  <motion.div 
+                    key={item.year}
+                    initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    className={`relative pl-8 md:pl-0 flex flex-col md:flex-row items-center ${index % 2 === 0 ? 'md:flex-row-reverse' : ''}`}
+                  >
+                     <div className="absolute left-[-5px] md:left-1/2 md:-ml-[5px] w-4 h-4 rounded-full bg-amber-500 border-4 border-[#1e293b]" />
+                     <div className="flex-1 md:w-1/2" />
+                     <div className={`flex-1 md:w-1/2 ${index % 2 === 0 ? 'md:pr-12 md:text-right' : 'md:pl-12 md:text-left'}`}>
+                        <div className="text-amber-500 font-bold text-xl mb-2">{item.year}</div>
+                        <h3 className="text-2xl font-bold text-white mb-2">{item.title}</h3>
+                        <p className="text-slate-400 leading-relaxed">{item.description}</p>
+                     </div>
+                  </motion.div>
+               ))}
+            </div>
+         </div>
+      </section>
+
       {/* CTA */}
-      <section className="py-20 bg-secondary">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="font-display text-3xl font-bold text-foreground mb-4">
-            Join Our Team
+      <section className="py-24 bg-[#0f172a] relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-r from-amber-600/10 to-yellow-600/10" />
+        <div className="container mx-auto px-6 md:px-12 lg:px-16 text-center relative z-10">
+          <h2 className="font-display text-3xl md:text-4xl font-bold text-white mb-6">
+            Ready to shape the future together?
           </h2>
-          <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">
-            We're always looking for talented individuals who share our passion for building great software.
+          <p className="text-slate-400 mb-8 max-w-2xl mx-auto text-lg">
+            We are always looking for visionary partners and talented individuals to join our mission.
           </p>
-          <Button size="lg" className="accent-gradient text-accent-foreground" asChild>
-            <Link to="/company/careers">
-              View Open Positions <ArrowRight className="ml-2 h-4 w-4" />
-            </Link>
-          </Button>
+          <div className="flex flex-center justify-center gap-4">
+             <Button size="lg" className="h-14 px-8 rounded-full bg-amber-600 hover:bg-amber-500 text-white font-bold" asChild>
+                <Link to="/company/careers">
+                View Careers <ArrowRight className="ml-2 h-4 w-4" />
+                </Link>
+            </Button>
+          </div>
         </div>
       </section>
     </>
