@@ -3,6 +3,10 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Cloud, Server, Shield, Zap, ArrowRight, Globe, Layers, Cpu, Code2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import awsLogo from "../../assets/cloud/Amazon_Web_Services_Logo.svg";
+import gcpLogo from "../../assets/cloud/Google_Cloud_logo.svg";
+import azureLogo from "../../assets/cloud/Microsoft_Azure_Logo.svg";
+import openServerLogo from "../../assets/cloud/open server.jpg";
 
 const CloudSolutions = () => {
   return (
@@ -109,12 +113,12 @@ const CloudSolutions = () => {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
-              { icon: Layers, title: "Multi-Cloud Strategy", description: "Avoid vendor lock-in with seamless deployment across AWS, Azure, and Google Cloud.", color: "text-sky-500", bg: "bg-sky-500/10" },
-              { icon: Shield, title: "Zero Trust Security", description: "Identity-aware proxies and micro-segmentation to secure your cloud workloads.", color: "text-indigo-500", bg: "bg-indigo-500/10" },
-              { icon: Zap, title: "Serverless Computing", description: "Run code without provisioning or managing servers. Pay only for compute time.", color: "text-amber-500", bg: "bg-amber-500/10" },
-              { icon: Cpu, title: "Containerization", description: "Docker & Kubernetes experts to help you containerize legacy applications.", color: "text-cyan-500", bg: "bg-cyan-500/10" },
-              { icon: Code2, title: "DevOps & CI/CD", description: "Automated pipelines for faster, more reliable software delivery and deployment.", color: "text-emerald-500", bg: "bg-emerald-500/10" },
-              { icon: Server, title: "Disaster Recovery", description: "Robust backup and failover strategies ensuring business continuity.", color: "text-rose-500", bg: "bg-rose-500/10" },
+              { icon: Layers, title: "Multi-Cloud Strategy", description: "Avoid vendor lock-in with seamless deployment across AWS, Azure, and Google Cloud.", color: "text-sky-500", bg: "bg-sky-500/10", borderGradient: "from-sky-500 via-sky-400 to-sky-500" },
+              { icon: Shield, title: "Zero Trust Security", description: "Identity-aware proxies and micro-segmentation to secure your cloud workloads.", color: "text-indigo-500", bg: "bg-indigo-500/10", borderGradient: "from-indigo-500 via-indigo-400 to-indigo-500" },
+              { icon: Zap, title: "Serverless Computing", description: "Run code without provisioning or managing servers. Pay only for compute time.", color: "text-amber-500", bg: "bg-amber-500/10", borderGradient: "from-amber-500 via-amber-400 to-amber-500" },
+              { icon: Cpu, title: "Containerization", description: "Docker & Kubernetes experts to help you containerize legacy applications.", color: "text-cyan-500", bg: "bg-cyan-500/10", borderGradient: "from-cyan-500 via-cyan-400 to-cyan-500" },
+              { icon: Code2, title: "DevOps & CI/CD", description: "Automated pipelines for faster, more reliable software delivery and deployment.", color: "text-emerald-500", bg: "bg-emerald-500/10", borderGradient: "from-emerald-500 via-emerald-400 to-emerald-500" },
+              { icon: Server, title: "Disaster Recovery", description: "Robust backup and failover strategies ensuring business continuity.", color: "text-rose-500", bg: "bg-rose-500/10", borderGradient: "from-rose-500 via-rose-400 to-rose-500" },
             ].map((feature, index) => (
               <motion.div
                 key={feature.title}
@@ -123,15 +127,20 @@ const CloudSolutions = () => {
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
                 whileHover={{ y: -5 }}
-                className="group p-8 rounded-3xl bg-card border border-border hover:shadow-2xl transition-all duration-300 relative overflow-hidden"
+                className="relative group p-[2px] rounded-3xl overflow-hidden hover:shadow-2xl transition-all duration-300"
               >
-                <div className={`absolute top-0 right-0 w-32 h-32 rounded-full blur-3xl opacity-0 group-hover:opacity-20 transition-opacity ${feature.bg}`} />
+                {/* Electric Border Gradient */}
+                <div className={`absolute inset-0 bg-gradient-to-r ${feature.borderGradient} animate-border-flow opacity-70 group-hover:opacity-100 transition-opacity duration-500`} />
                 
-                <div className={`h-14 w-14 rounded-2xl ${feature.bg} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform ${feature.color}`}>
-                  <feature.icon className="h-7 w-7" />
+                <div className="relative h-full bg-card rounded-[22px] p-8 overflow-hidden z-20">
+                  <div className={`absolute top-0 right-0 w-32 h-32 rounded-full blur-3xl opacity-0 group-hover:opacity-20 transition-opacity ${feature.bg}`} />
+                  
+                  <div className={`h-14 w-14 rounded-2xl ${feature.bg} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform ${feature.color}`}>
+                    <feature.icon className="h-7 w-7" />
+                  </div>
+                  <h3 className="font-display text-xl font-bold text-foreground mb-3">{feature.title}</h3>
+                  <p className="text-muted-foreground leading-relaxed">{feature.description}</p>
                 </div>
-                <h3 className="font-display text-xl font-bold text-foreground mb-3">{feature.title}</h3>
-                <p className="text-muted-foreground leading-relaxed">{feature.description}</p>
               </motion.div>
             ))}
           </div>
@@ -151,8 +160,8 @@ const CloudSolutions = () => {
            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
               {/* AWS */}
               <div className="group p-8 rounded-3xl bg-white border border-slate-200 hover:border-orange-500/50 hover:shadow-xl hover:shadow-orange-500/10 transition-all duration-300 text-center">
-                 <div className="h-16 w-16 mx-auto mb-6">
-                    <img src="https://cdn.simpleicons.org/amazonaws/FF9900" alt="AWS" className="w-full h-full object-contain" />
+                 <div className="h-16 mx-auto mb-6 flex items-center justify-center">
+                    <img src={awsLogo} alt="AWS" className="h-full w-auto object-contain" />
                  </div>
                  <h3 className="font-display text-xl font-bold text-slate-900 mb-3">Amazon Web Services</h3>
                  <p className="text-sm text-slate-500 leading-relaxed">
@@ -162,8 +171,8 @@ const CloudSolutions = () => {
 
               {/* Google Cloud */}
               <div className="group p-8 rounded-3xl bg-white border border-slate-200 hover:border-blue-500/50 hover:shadow-xl hover:shadow-blue-500/10 transition-all duration-300 text-center">
-                 <div className="h-16 w-16 mx-auto mb-6">
-                    <img src="https://cdn.simpleicons.org/googlecloud/4285F4" alt="Google Cloud" className="w-full h-full object-contain" />
+                 <div className="h-16 mx-auto mb-6 flex items-center justify-center">
+                    <img src={gcpLogo} alt="Google Cloud" className="h-full w-auto object-contain" />
                  </div>
                  <h3 className="font-display text-xl font-bold text-slate-900 mb-3">Google Cloud Platform</h3>
                  <p className="text-sm text-slate-500 leading-relaxed">
@@ -173,8 +182,8 @@ const CloudSolutions = () => {
 
               {/* Azure */}
               <div className="group p-8 rounded-3xl bg-white border border-slate-200 hover:border-sky-600/50 hover:shadow-xl hover:shadow-sky-600/10 transition-all duration-300 text-center">
-                 <div className="h-16 w-16 mx-auto mb-6">
-                    <img src="https://cdn.simpleicons.org/microsoftazure/0078D4" alt="Azure" className="w-full h-full object-contain" />
+                 <div className="h-16 mx-auto mb-6 flex items-center justify-center">
+                    <img src={azureLogo} alt="Azure" className="h-full w-auto object-contain" />
                  </div>
                  <h3 className="font-display text-xl font-bold text-slate-900 mb-3">Microsoft Azure</h3>
                  <p className="text-sm text-slate-500 leading-relaxed">
@@ -184,8 +193,8 @@ const CloudSolutions = () => {
 
               {/* Private / Open Servers */}
               <div className="group p-8 rounded-3xl bg-white border border-slate-200 hover:border-indigo-500/50 hover:shadow-xl hover:shadow-indigo-500/10 transition-all duration-300 text-center">
-                 <div className="h-16 w-16 mx-auto mb-6 flex items-center justify-center bg-indigo-50 rounded-2xl">
-                    <Server className="w-8 h-8 text-indigo-600" />
+                 <div className="h-16 mx-auto mb-6 flex items-center justify-center">
+                    <img src={openServerLogo} alt="Private & Open Servers" className="h-full w-auto object-contain" />
                  </div>
                  <h3 className="font-display text-xl font-bold text-slate-900 mb-3">Private & Open Servers</h3>
                  <p className="text-sm text-slate-500 leading-relaxed">

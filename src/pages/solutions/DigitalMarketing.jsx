@@ -3,7 +3,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, BarChart3, Globe, Zap, MessageCircle, Heart, Share2, Play, PenTool, UserPlus, Search, Mail, Users, ShieldAlert } from "lucide-react";
+import { ArrowRight, BarChart3, Globe, Zap, MessageCircle, Heart, Share2, Play, PenTool, UserPlus, Search, Mail, Users, ShieldAlert, Rocket, Crown, Gem, TrendingUp, Sparkles } from "lucide-react";
 
 // Brand Logos (Inline SVGs for precise coloring)
 const FacebookLogo = ({ className }) => (
@@ -54,6 +54,7 @@ const DigitalMarketing = () => {
           description: "Perfect for new businesses establishing a digital footprint.",
           features: ["2 Social Platforms", "8 Posts / Month", "Basic Graphics", "Community Monitoring"],
           gradient: "from-blue-500 to-cyan-500",
+          icon: Zap,
           popular: false
       },
       {
@@ -62,6 +63,7 @@ const DigitalMarketing = () => {
           description: "Accelerate your presence with consistent content and engagement.",
           features: ["3 Social Platforms", "12 Posts / Month", "4 Reels / Shorts", "Monthly Performance Report", "Ad Campaign Setup"],
           gradient: "from-purple-500 to-pink-500",
+          icon: Rocket,
           popular: true
       },
       {
@@ -70,6 +72,7 @@ const DigitalMarketing = () => {
           description: "Dominate your niche with high-quality video and paid strategy.",
           features: ["4 Social Platforms", "20 Posts / Month", "8 Reels / Shorts", "Bi-Weekly Strategy Calls", "Paid Ad Management ($1k Spend)"],
           gradient: "from-orange-500 to-red-500",
+          icon: Crown,
           popular: false
       },
       {
@@ -78,6 +81,7 @@ const DigitalMarketing = () => {
           description: "Full-scale digital takeover for established brands.",
           features: ["All Platforms", "Daily Posting", "15 Reels / Shorts", "Influencer Outreach", "Paid Ad Management ($5k+ Spend)"],
           gradient: "from-green-500 to-emerald-500",
+          icon: TrendingUp,
           popular: false
       },
       {
@@ -86,6 +90,7 @@ const DigitalMarketing = () => {
           description: "Custom, high-volume production for maximum impact.",
           features: ["Unlimited Platforms", "Daily Video Content", "Dedicated Team (3 Member)", "24/7 Crisis Management", "Custom Viral Campaigns"],
           gradient: "from-blue-600 via-indigo-600 to-purple-600",
+          icon: Gem,
           popular: false
       }
   ];
@@ -433,7 +438,9 @@ const DigitalMarketing = () => {
                         </div>
                      )}
                      
-                     <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${pkg.gradient} mb-6 opacity-90 group-hover:opacity-100 transition-opacity`} />
+                     <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${pkg.gradient} mb-6 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300`}>
+                        <pkg.icon className="h-6 w-6 text-white" />
+                     </div>
                      
                      <h3 className="text-lg font-bold text-white mb-2">{pkg.name}</h3>
                      <p className="text-xs text-slate-400 mb-6 flex-grow leading-relaxed">{pkg.description}</p>
@@ -449,7 +456,7 @@ const DigitalMarketing = () => {
                         ))}
                      </ul>
                      
-                     <Button variant="outline" className="w-full border-white/10 text-slate-300 hover:bg-white hover:text-black transition-colors" asChild>
+                     <Button className="w-full bg-white text-black hover:bg-blue-500 hover:text-white transition-all font-bold shadow-lg" asChild>
                         <Link to="/company/contact">Select Plan</Link>
                      </Button>
                   </motion.div>

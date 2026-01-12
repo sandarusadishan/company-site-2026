@@ -44,10 +44,10 @@ const Careers = () => {
   ];
 
   const jobs = [
-    { id: 1, title: "Senior Backend Engineer", dept: "Engineering", location: "Remote", type: "Full-time" },
-    { id: 2, title: "Product Designer UI/UX", dept: "Product", location: "Colombo / Remote", type: "Full-time" },
-    { id: 3, title: "Enterprise Account Executive", dept: "Sales", location: "Singapore", type: "Full-time" },
-    { id: 4, title: "DevOps Specialist", dept: "Engineering", location: "Remote", type: "Contract" },
+    { id: 1, title: "Senior Backend Engineer", dept: "Engineering", location: "Colombo", type: "Full-time", status: "Closed" },
+    { id: 2, title: "Product Designer UI/UX", dept: "Product", location: "Colombo / Remote", type: "Full-time", status: "Closed" },
+    { id: 3, title: "Enterprise Account Executive", dept: "Sales", location: "Colombo", type: "Full-time", status: "Open" },
+    { id: 4, title: "DevOps Specialist", dept: "Engineering", location: "Colombo", type: "Contract", status: "Closed" },
   ];
 
   const handleApply = (job) => {
@@ -63,24 +63,26 @@ const Careers = () => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Replace with your EmailJS credentials
-    // const templateParams = {
-    //   job_title: selectedJob.title,
-    //   applicant_name: e.target.fullName.value,
-    //   applicant_email: e.target.email.value,
-    //   linkedin_url: e.target.linkedin.value,
-    //   cover_letter: e.target.coverLetter.value,
-    //   cv_filename: uploadedFile ? uploadedFile.name : "No file attached"
-    // };
+    const formData = {
+       name: e.target.fullName.value,
+       email: e.target.email.value,
+       linkedin: e.target.linkedin.value,
+       coverLetter: e.target.coverLetter.value
+    };
 
-    // await emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', templateParams, 'YOUR_PUBLIC_KEY');
+    // Construct mailto link
+    const subject = `Job Application: ${selectedJob.title} - ${formData.name}`;
+    const body = `Name: ${formData.name}%0D%0AEmail: ${formData.email}%0D%0ALinkedIn: ${formData.linkedin || 'N/A'}%0D%0A%0D%0ACover Letter:%0D%0A${formData.coverLetter}%0D%0A%0D%0APlease attach my Resume/CV manually to this email.`;
+    
+    // Open email client
+    window.location.href = `mailto:info@svg.lk?subject=${subject}&body=${body}`;
 
-    // Simulate API call for now
+    // Simulate API call for UI feedback
     await new Promise(resolve => setTimeout(resolve, 1500));
 
     toast({
-      title: "Application Sent!",
-      description: `Your application for ${selectedJob.title} has been sent to info@svg.lk`,
+      title: "Email Client Opened",
+      description: `Please attach your CV and send the email to info@svg.lk`,
       variant: "success",
     });
 
@@ -110,9 +112,9 @@ const Careers = () => {
               animate={{ opacity: 1, scale: 1 }}
               className="max-w-4xl mx-auto"
             >
-               <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-300 text-sm font-medium mb-8 backdrop-blur-md">
-                  <Sparkles className="h-4 w-4" />
-                  We are hiring!
+               <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-800/50 border border-slate-700/50 text-slate-300 text-sm font-medium mb-8 backdrop-blur-md">
+                  <Briefcase className="h-4 w-4" />
+                  Hiring Closed
                </div>
                <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold mb-6 tracking-tight">
                   Do the best work <br/>
@@ -173,22 +175,34 @@ const Careers = () => {
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: index * 0.1 }}
-                    onClick={() => handleApply(job)}
-                    className="group p-6 rounded-2xl bg-[#0a1025] border border-white/5 hover:border-blue-500/50 hover:bg-[#0f172a] hover:shadow-[0_0_30px_rgba(59,130,246,0.1)] flex flex-col md:flex-row items-start md:items-center justify-between gap-6 cursor-pointer transition-all duration-300"
+                    onClick={() => job.status === "Open" && handleApply(job)}
+                    className={`group p-6 rounded-2xl bg-[#0a1025] border border-white/5 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 transition-all duration-300 ${job.status === "Open" ? "hover:border-blue-500/50 hover:bg-[#0f172a] hover:shadow-[0_0_30px_rgba(59,130,246,0.1)] cursor-pointer" : "opacity-75 cursor-not-allowed"}`}
                   >
                      <div>
-                        <h3 className="text-xl font-bold text-white group-hover:text-blue-400 transition-colors">{job.title}</h3>
-                        <div className="flex items-center gap-4 text-sm text-slate-400 mt-2">
+                        <div className="flex items-center gap-3 mb-1">
+                            <h3 className={`text-xl font-bold ${job.status === "Open" ? "text-white group-hover:text-blue-400" : "text-slate-300"} transition-colors`}>{job.title}</h3>
+                            <span className={`px-2 py-0.5 rounded-full border text-xs font-bold uppercase tracking-wider ${job.status === "Open" ? "bg-green-500/10 border-green-500/20 text-green-400" : "bg-red-500/10 border-red-500/20 text-red-400"}`}>
+                                {job.status}
+                            </span>
+                        </div>
+                        <div className="flex items-center gap-4 text-sm text-slate-500 mt-2">
                            <span className="flex items-center gap-1"><Briefcase className="h-3 w-3" /> {job.dept}</span>
-                           <span className="w-1 h-1 rounded-full bg-slate-600" />
+                           <span className="w-1 h-1 rounded-full bg-slate-700" />
                            <span>{job.location}</span>
-                           <span className="w-1 h-1 rounded-full bg-slate-600" />
+                           <span className="w-1 h-1 rounded-full bg-slate-700" />
                            <span className="px-2 py-0.5 rounded-full bg-white/5 border border-white/10 text-xs">{job.type}</span>
                         </div>
                      </div>
-                     <Button className="bg-white/5 text-white hover:bg-white/10 hover:text-blue-300 transition-colors shrink-0 rounded-full px-6">
-                        Apply Now
-                     </Button>
+                     
+                     {job.status === "Open" ? (
+                        <Button className="bg-white/5 text-white hover:bg-white/10 hover:text-blue-300 transition-colors shrink-0 rounded-full px-6">
+                            Apply Now
+                        </Button>
+                     ) : (
+                        <Button disabled className="bg-slate-800 text-slate-400 border border-slate-700 cursor-not-allowed shrink-0 rounded-full px-6 opacity-50">
+                            Applications Closed
+                        </Button>
+                     )}
                   </motion.div>
                ))}
             </div>
@@ -233,17 +247,17 @@ const Careers = () => {
                   <div className="grid md:grid-cols-2 gap-6">
                     <div className="space-y-2">
                        <Label htmlFor="fullName" className="text-slate-300 flex items-center gap-2"><User className="h-4 w-4" /> Full Name</Label>
-                       <Input id="fullName" required placeholder="John Doe" className="bg-[#020617] border-white/10 text-white focus:border-blue-500/50 focus:ring-blue-500/20" />
+                       <Input id="fullName" required placeholder="full name" className="bg-[#020617] border-white/10 text-white focus:border-blue-500/50 focus:ring-blue-500/20" />
                     </div>
                     <div className="space-y-2">
                        <Label htmlFor="email" className="text-slate-300 flex items-center gap-2"><Mail className="h-4 w-4" /> Email Address</Label>
-                       <Input id="email" type="email" required placeholder="john@example.com" className="bg-[#020617] border-white/10 text-white focus:border-blue-500/50 focus:ring-blue-500/20" />
+                       <Input id="email" type="email" required placeholder="email address" className="bg-[#020617] border-white/10 text-white focus:border-blue-500/50 focus:ring-blue-500/20" />
                     </div>
                   </div>
 
                   <div className="space-y-2">
                      <Label htmlFor="linkedin" className="text-slate-300 flex items-center gap-2"><Linkedin className="h-4 w-4" /> LinkedIn Profile (Optional)</Label>
-                     <Input id="linkedin" placeholder="https://linkedin.com/in/johndoe" className="bg-[#020617] border-white/10 text-white focus:border-blue-500/50 focus:ring-blue-500/20" />
+                     <Input id="linkedin" placeholder="https://www.linkedin.com/company/softvision-it-group-pvt-ltd/" className="bg-[#020617] border-white/10 text-white focus:border-blue-500/50 focus:ring-blue-500/20" />
                   </div>
 
                   <div className="space-y-2">

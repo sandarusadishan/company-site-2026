@@ -149,11 +149,11 @@ const Contact = () => {
                   <div className="grid sm:grid-cols-2 gap-4">
                     <div className="space-y-2">
                       <Label htmlFor="firstName">First Name</Label>
-                      <Input id="firstName" placeholder="Name" required />
+                      <Input id="firstName" placeholder="first name" required />
                     </div>
                     <div className="space-y-2">
                       <Label htmlFor="lastName">Last Name</Label>
-                      <Input id="lastName" placeholder="Doe" required />
+                      <Input id="lastName" placeholder="last name" required />
                     </div>
                   </div>
 
