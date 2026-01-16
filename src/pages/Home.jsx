@@ -1,10 +1,10 @@
 import { useEffect, useRef } from "react";
-import { Helmet } from "react-helmet-async";
 import { motion, useInView, useMotionValue, useSpring } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ArrowRight, Server, Shield, GitBranch, Cloud, Check, ChevronRight, Zap, Lock, BarChart3, Headphones, Code2, Smartphone, Globe, Layout, Database } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import videoBg from "@/assets/video/video.mp4";
+import SEO from "@/components/SEO";
 
 const CountUp = ({ to, suffix = "" }) => {
   const ref = useRef(null);
@@ -34,6 +34,7 @@ const CountUp = ({ to, suffix = "" }) => {
 };
 
 const Home = () => {
+    // ... const services declaration ...
   const services = [
     {
       icon: Code2,
@@ -74,10 +75,11 @@ const Home = () => {
 
   return (
     <>
-      <Helmet>
-        <title>SoftVision IT Group | Enterprise Software Solutions</title>
-        <meta name="description" content="Transform your digital infrastructure with enterprise-grade API management, identity solutions, and cloud integration platform. Trusted by Fortune 500 companies." />
-      </Helmet>
+      <SEO 
+        title="Enterprise Software Solutions in Sri Lanka"
+        description="SoftVision IT Group provides top-tier software solutions including POS Systems, Payroll Management, Busy Accounting Software, and custom enterprise applications in Sri Lanka."
+        keywords="POS Systems, Payroll Software, Busy Accounting, Enterprise Software, Web Development Sri Lanka, Mobile Apps, Hotel Management System, Restaurant POS"
+      />
 
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden hero-gradient">

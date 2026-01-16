@@ -37,7 +37,7 @@ import {
 import busy62 from "@/assets/exe/Busy21-Setup-6.2.exe";
 import busy122 from "@/assets/exe/Busy21-Setup-12.2.exe";
 
-const MegaMenu = ({ menuType }) => {
+const MegaMenu = ({ menuType, closeMenu }) => {
   const menuContent = {
     Products: {
       columns: [
@@ -145,6 +145,7 @@ const MegaMenu = ({ menuType }) => {
                       href={item.href}
                       download
                       className="group flex items-start gap-3 p-3 rounded-xl hover:bg-secondary transition-colors"
+                      onClick={closeMenu}
                     >
                       <div className="flex-shrink-0 p-2 rounded-lg bg-secondary group-hover:bg-accent/10 transition-colors">
                         <item.icon className="h-5 w-5 text-accent" />
@@ -163,6 +164,7 @@ const MegaMenu = ({ menuType }) => {
                       key={item.label}
                       to={item.href}
                       className="group flex items-start gap-3 p-3 rounded-xl hover:bg-secondary transition-colors"
+                      onClick={closeMenu}
                     >
                       <div className="flex-shrink-0 p-2 rounded-lg bg-secondary group-hover:bg-accent/10 transition-colors">
                         <item.icon className="h-5 w-5 text-accent" />
