@@ -71,6 +71,7 @@ const Header = () => {
                   className={`flex items-center gap-1 px-4 py-2 text-sm font-medium transition-colors rounded-lg hover:bg-secondary/50 ${
                     isScrolled ? "text-foreground/80 hover:text-foreground" : "text-white/80 hover:text-white"
                   }`}
+                  onClick={() => setActiveMenu(null)}
                 >
                   {item.label}
                   {item.hasMegaMenu && (
@@ -80,7 +81,7 @@ const Header = () => {
 
                 <AnimatePresence>
                   {activeMenu === item.label && item.hasMegaMenu && (
-                    <MegaMenu menuType={item.label} />
+                    <MegaMenu menuType={item.label} closeMenu={() => setActiveMenu(null)} />
                   )}
                 </AnimatePresence>
               </div>
@@ -132,6 +133,7 @@ const Header = () => {
                   key={item.label}
                   to={item.href}
                   className="block px-4 py-3 text-lg font-medium text-foreground hover:bg-secondary rounded-lg transition-colors"
+                  onClick={() => setIsMobileMenuOpen(false)}
                 >
                   {item.label}
                 </Link>
@@ -148,10 +150,10 @@ const Header = () => {
                   Busy Software
                 </Button>
                 <Button variant="outline" className="w-full" asChild>
-                  <Link to="/company/contact">Contact Us</Link>
+                  <Link to="/company/contact" onClick={() => setIsMobileMenuOpen(false)}>Contact Us</Link>
                 </Button>
                 <Button className="w-full accent-gradient text-accent-foreground" asChild>
-                  <Link to="/company/contact">Get Started</Link>
+                  <Link to="/company/contact" onClick={() => setIsMobileMenuOpen(false)}>Get Started</Link>
                 </Button>
               </div>
             </nav>

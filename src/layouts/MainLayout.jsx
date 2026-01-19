@@ -1,8 +1,9 @@
 import { Outlet, useLocation } from "react-router-dom";
 import { useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+
 import Header from "@/components/navigation/Header";
 import Footer from "@/components/navigation/Footer";
+
 
 const MainLayout = () => {
   const location = useLocation();
@@ -15,18 +16,9 @@ const MainLayout = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
-      <AnimatePresence mode="wait">
-        <motion.main
-          key={location.pathname}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -20 }}
-          transition={{ duration: 0.3, ease: "easeInOut" }}
-          className="flex-1"
-        >
-          <Outlet />
-        </motion.main>
-      </AnimatePresence>
+      <main className="flex-1">
+        <Outlet />
+      </main>
       <Footer />
     </div>
   );
