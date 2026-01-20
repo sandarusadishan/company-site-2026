@@ -3,7 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import MegaMenu from "./MegaMenu";
+import MegaMenu, { menuContent } from "./MegaMenu";
 
 import logo from "@/assets/logo/logo.png";
 
@@ -11,6 +11,7 @@ const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeMenu, setActiveMenu] = useState(null);
+  const [expandedMobileMenu, setExpandedMobileMenu] = useState(null);
   const location = useLocation();
 
   useEffect(() => {
@@ -24,6 +25,7 @@ const Header = () => {
   useEffect(() => {
     setIsMobileMenuOpen(false);
     setActiveMenu(null);
+    setExpandedMobileMenu(null);
   }, [location.pathname]);
 
   const navItems = [
@@ -33,7 +35,9 @@ const Header = () => {
     { label: "Company", href: "/company/about", hasMegaMenu: true },
   ];
 
-  const isContactPage = location.pathname === "/company/contact";
+  const toggleMobileSubMenu = (label) => {
+    setExpandedMobileMenu(expandedMobileMenu === label ? null : label);
+  };
 
   return (
     <header
@@ -125,35 +129,85 @@ const Header = () => {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
-            className="lg:hidden bg-background border-t border-border"
+            className="lg:hidden bg-background border-t border-border overflow-hidden"
           >
-            <nav className="container mx-auto px-4 py-6 space-y-4">
+            <nav className="container mx-auto px-4 py-6 space-y-4 max-h-[80vh] overflow-y-auto">
               {navItems.map((item) => (
-                <Link
-                  key={item.label}
-                  to={item.href}
-                  className="block px-4 py-3 text-lg font-medium text-foreground hover:bg-secondary rounded-lg transition-colors"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  {item.label}
-                </Link>
+                <div key={item.label} className="border-b border-border/50 last:border-0 pb-2">
+                  <div className="flex items-center justify-between">
+                    <Link
+                      to={item.href}
+                      className="flex-1 px-4 py-3 text-lg font-medium text-foreground hover:bg-secondary rounded-lg transition-colors"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                      {item.label}
+                    </Link>
+                    {item.hasMegaMenu && (
+                      <button
+                        onClick={() => toggleMobileSubMenu(item.label)}
+                        className="p-3 text-muted-foreground hover:text-foreground transition-colors"
+                      >
+                        <ChevronDown 
+                            className={`h-5 w-5 transition-transform duration-300 ${expandedMobileMenu === item.label ? "rotate-180" : ""}`} 
+                        />
+                      </button>
+                    )}
+                  </div>
+
+                  {/* Mobile Submenu Accordion */}
+                   <AnimatePresence>
+                      {item.hasMegaMenu && expandedMobileMenu === item.label && (
+                        <motion.div
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: "auto", opacity: 1 }}
+                          exit={{ height: 0, opacity: 0 }}
+                          transition={{ duration: 0.2 }}
+                          className="overflow-hidden bg-secondary/30 rounded-lg mx-2"
+                        >
+                           <div className="p-4 space-y-6">
+                              {menuContent[item.label].columns.map((column, idx) => (
+                                 <div key={idx}>
+                                    <h4 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-3 px-2">
+                                       {column.title}
+                                    </h4>
+                                    <div className="space-y-1">
+                                       {column.items.map((subItem) => (
+                                          subItem.isDownload ? (
+                                             <a 
+                                                key={subItem.label}
+                                                href={subItem.href}
+                                                download
+                                                className="flex items-center gap-3 p-2 rounded-lg hover:bg-secondary transition-colors"
+                                                onClick={() => setIsMobileMenuOpen(false)}
+                                             >
+                                                <subItem.icon className="h-4 w-4 text-accent" />
+                                                <span className="text-sm font-medium text-foreground">{subItem.label}</span>
+                                             </a>
+                                          ) : (
+                                             <Link
+                                                key={subItem.label}
+                                                to={subItem.href}
+                                                className="flex items-center gap-3 p-2 rounded-lg hover:bg-secondary transition-colors"
+                                                onClick={() => setIsMobileMenuOpen(false)}
+                                             >
+                                                <subItem.icon className="h-4 w-4 text-accent" />
+                                                <span className="text-sm font-medium text-foreground">{subItem.label}</span>
+                                             </Link>
+                                          )
+                                       ))}
+                                    </div>
+                                 </div>
+                              ))}
+                           </div>
+                        </motion.div>
+                      )}
+                   </AnimatePresence>
+                </div>
               ))}
-              <div className="pt-4 border-t border-border space-y-3">
-                <Button 
-                  variant="outline" 
-                  className="w-full"
-                  onClick={() => {
-                    setIsMobileMenuOpen(false);
-                    setTimeout(() => document.getElementById('busy-downloads')?.scrollIntoView({ behavior: 'smooth' }), 300);
-                  }}
-                >
-                  Busy Software
-                </Button>
-                <Button variant="outline" className="w-full" asChild>
-                  <Link to="/company/contact" onClick={() => setIsMobileMenuOpen(false)}>Contact Us</Link>
-                </Button>
+              
+              <div className="pt-4 space-y-3">
                 <Button className="w-full accent-gradient text-accent-foreground" asChild>
-                  <Link to="/company/contact" onClick={() => setIsMobileMenuOpen(false)}>Get Started</Link>
+                  <Link to="/company/contact" onClick={() => setIsMobileMenuOpen(false)}>Contact Us</Link>
                 </Button>
               </div>
             </nav>
@@ -163,5 +217,4 @@ const Header = () => {
     </header>
   );
 };
-
 export default Header;

@@ -37,8 +37,7 @@ import {
 import busy62 from "@/assets/exe/Busy21-Setup-6.2.exe";
 import busy122 from "@/assets/exe/Busy21-Setup-12.2.exe";
 
-const MegaMenu = ({ menuType, closeMenu }) => {
-  const menuContent = {
+export const menuContent = {
     Products: {
       columns: [
         {
@@ -119,6 +118,7 @@ const MegaMenu = ({ menuType, closeMenu }) => {
     },
   };
 
+const MegaMenu = ({ menuType, closeMenu }) => {
   const content = menuContent[menuType];
   if (!content) return null;
 
