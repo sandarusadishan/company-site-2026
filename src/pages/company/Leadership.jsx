@@ -1,6 +1,7 @@
 import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
 import { Linkedin, Twitter, Quote, Sparkles } from "lucide-react";
+import Boss from "../../assets/boss.png";
 
 const Leadership = () => {
     
@@ -8,7 +9,7 @@ const Leadership = () => {
   const leader = {
      name: "Mr. Bawan Shivanandarajah",
      role: "Founder & CEO",
-     image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=800",
+     image: Boss,
      bio: "With over a decade of experience in enterprise software architecture, Mr. Shivanandarajah founded SoftVision with a singular mission: to simplify the complex. His vision drives our innovation, pushing boundaries in AI, Cloud, and Fintech solutions.",
      quote: "We don't just build software; we architect the future of business intelligence."
   };
