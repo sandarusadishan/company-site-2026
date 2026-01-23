@@ -20,7 +20,7 @@ const Restaurant = () => {
       title="Taste of Efficiency"
       subtitle="Modern Restaurant OS"
       description="Orchestrate your entire restaurant from a single dashboard. From the first reservation to the final check. Designed for fine dining, cafes, and QSR."
-      demoLink="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+      demoLink="https://restrurant.svg.lk/?pin=1234"
       images={[img1, img2]}
       features={features}
       colorTheme="orange"

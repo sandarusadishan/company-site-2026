@@ -20,7 +20,7 @@ const POS = () => {
       title="Next-Gen Retail POS"
       subtitle="Built for Speed."
       description="The point-of-sale built for high-volume businesses. Process thousands of transactions without skipping a beat. Designed for modern retail environments."
-      demoLink="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+      demoLink="https://pos.svg.lk/login?username=admin&password=123456"
       images={[img1, img2]}
       features={features}
       colorTheme="blue"
