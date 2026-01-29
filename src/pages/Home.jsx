@@ -1,11 +1,16 @@
 import { useEffect, useRef } from "react";
-import { motion, useInView, useMotionValue, useSpring } from "framer-motion";
+import { motion, useInView, useSpring, useMotionValue } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ArrowRight, Server, Shield, GitBranch, Cloud, Check, ChevronRight, Zap, Lock, BarChart3, Headphones, Code2, Smartphone, Globe, Layout, Database } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import videoBg from "@/assets/video/video.mp4";
 import SEO from "@/components/SEO";
+import softVisionLogo from "@/assets/companies/icon.png";
+import busyLogo from "@/assets/companies/busy.png";
+import SkybLogo from "@/assets/companies/skyb.jpg";
+import strategicBg from "@/assets/tech_bg_hq.png";
 
+// CountUp Animation Component - Fixed Import
 const CountUp = ({ to, suffix = "" }) => {
   const ref = useRef(null);
   const motionValue = useMotionValue(0);
@@ -215,6 +220,132 @@ const Home = () => {
           {/* Gradient masks for smooth fade effect at edges */}
           <div className="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-background to-transparent z-10" />
           <div className="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-background to-transparent z-10" />
+        </div>
+      </section>
+
+      {/* Strategic Group Companies Section */}
+      <section className="py-32 relative overflow-hidden bg-[#020617]">
+        {/* Generated Premium Background */}
+        <div className="absolute inset-0 z-0">
+          <img 
+            src={strategicBg} 
+            alt="Strategic Background" 
+            className="w-full h-full object-cover opacity-40 mix-blend-screen"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#020617] via-transparent to-[#020617]" />
+        </div>
+        
+        <div className="container mx-auto px-6 md:px-12 lg:px-16 relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="text-center mb-24"
+          >
+             <motion.div 
+               whileHover={{ scale: 1.05 }}
+               className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-400/20 text-blue-300 text-xs font-bold tracking-[0.2em] uppercase mb-8 backdrop-blur-xl shadow-[0_0_20px_rgba(59,130,246,0.2)]"
+             >
+                <Globe className="w-3 h-3 animate-pulse" />
+                Global Ecosystem
+             </motion.div>
+             <h2 className="font-display text-5xl md:text-7xl font-bold text-white mb-8 tracking-tighter leading-[0.9]">
+               Strategic <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-300 to-indigo-400 drop-shadow-[0_0_30px_rgba(34,211,238,0.3)]">Alliance</span>
+             </h2>
+             <p className="text-blue-100/60 max-w-2xl mx-auto text-xl leading-relaxed font-light">
+               A unified coalition of industry leaders, engineering the future through specialized expertise and collective innovation.
+             </p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-3 gap-10 max-w-7xl mx-auto perspective-2000">
+            {[
+              {
+                name: "Soft Vision Technologies",
+                sub: "(Pvt) Ltd",
+                desc: "Enterprise-grade Business Management Solutions tailored for scale.",
+                logo: softVisionLogo,
+                color: "blue",
+                link: "https://busy.lk/",
+                icon: Shield
+              },
+              {
+                name: "Busy InfoTech",
+                sub: "(Pvt) Ltd",
+                desc: "Next-generation Cloud ERP Systems for modern commerce.",
+                logo: busyLogo,
+                color: "cyan",
+                link: "https://www.busyerp.lk/",
+                icon: Cloud
+              },
+              {
+                name: "Skyb Overseas Consultants",
+                sub: "(Pvt) Ltd",
+                desc: "Premier guidance for global education and career pathways.",
+                logo: SkybLogo,
+                color: "indigo",
+                link: "https://skyb.lk/",
+                icon: Globe
+              }
+            ].map((company, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="relative h-[380px] group cursor-pointer"
+              >
+                  {/* Card Container */}
+                  <div className="block h-full relative rounded-[24px]">
+                    
+                    {/* NEON BORDER GLOW - Matches User Reference */}
+                    <div 
+                      className="absolute inset-0 rounded-[24px] pointer-events-none transition-all duration-500 group-hover:opacity-100"
+                      style={{
+                        // Double-layer "Neon Tube" Glow: Inner + Outer
+                        boxShadow: `0 0 20px ${company.color === 'blue' ? '#3b82f6' : company.color === 'cyan' ? '#06b6d4' : '#6366f1'}, inset 0 0 20px ${company.color === 'blue' ? '#3b82f6' : company.color === 'cyan' ? '#06b6d4' : '#6366f1'}`,
+                        border: `2px solid ${company.color === 'blue' ? '#60a5fa' : company.color === 'cyan' ? '#22d3ee' : '#818cf8'}`,
+                        opacity: 0.8,
+                      }}
+                    />
+
+                    {/* Inner Content - Transparent to show background */}
+                    <a 
+                      href={company.link} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="absolute inset-[2px] bg-slate-950/20 backdrop-blur-[2px] rounded-[22px] z-10 flex flex-col items-center justify-center text-center p-8 transition-all duration-500 hover:bg-slate-950/40"
+                    >
+                        
+                        {/* Internal Shine Gradient */}
+                        <div className="absolute inset-0 bg-gradient-to-b from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-[22px]" />
+
+                        {/* Logo Container */}
+                        <div className="relative w-24 h-24 mb-6 bg-white/95 rounded-2xl flex items-center justify-center p-4 shadow-[0_0_25px_rgba(59,130,246,0.3)] group-hover:shadow-[0_0_40px_rgba(59,130,246,0.6)] group-hover:scale-110 transition-all duration-300">
+                          {company.logo ? (
+                            <img src={company.logo} alt={company.name} className="w-full h-full object-contain" />
+                          ) : (
+                            <company.icon className="w-10 h-10 text-slate-800" />
+                          )}
+                        </div>
+
+                        <h3 className="font-display text-xl font-bold text-white mb-2 group-hover:text-cyan-300 transition-colors duration-300 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
+                          {company.name}
+                        </h3>
+                        
+                        <p className="text-slate-200 text-sm leading-relaxed mb-6 font-light max-w-[200px] drop-shadow-md">
+                          {company.desc}
+                        </p>
+
+                        <div className="mt-auto flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-cyan-400 group-hover:text-cyan-300 transition-colors drop-shadow-sm">
+                           Visit Website <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
+                        </div>
+                    </a>
+                  </div>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </section>
 
