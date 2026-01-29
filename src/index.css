@@ -1,5 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap');
-@import "tailwindcss";
+import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap');
+
 @plugin "tailwindcss-animate";
 
 @theme {
@@ -34,9 +35,11 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-sm: calc(var(--radius) - 4px);
   
-  --font-display: "Outfit", sans-serif;
+  --font-display: "Unbounded", sans-serif;
   --font-sans: "Inter", sans-serif;
 }
+
+
 
 @layer base {
   :root {
@@ -161,10 +164,8 @@
     position: relative;
   }
 
-  /* Font එක අනිවාර්යයෙන්ම වැඩ කරන්න Font Variable එක කෙලින්ම ලබාදෙමු */
   h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-display) !important;
-    @apply font-bold tracking-tight;
+    @apply font-display font-bold tracking-tight;
   }
 }
 
