@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Landmark, Shield, Zap, TrendingUp, ArrowRight, CheckCircle2, PieChart, Coins, Briefcase } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import busyLogo from "@/assets/logo/busy logo.jpg";
+import busyLogo from "@/assets/logo/busyc.jpg";
 
 const Banking = () => {
   return (
