@@ -262,16 +262,16 @@ const Home = () => {
             {[
               {
                 name: "Soft Vision Technologies",
-                sub: "(Pvt) Ltd",
+                sub: "", 
                 desc: "Enterprise-grade Business Management Solutions tailored for scale.",
                 logo: softVisionLogo,
                 color: "blue",
-                link: "https://busy.lk/",
+                link: "https://softvision.lk/",
                 icon: Shield
               },
               {
                 name: "Busy InfoTech",
-                sub: "(Pvt) Ltd",
+                sub: "",
                 desc: "Next-generation Cloud ERP Systems for modern commerce.",
                 logo: busyLogo,
                 color: "cyan",
@@ -280,7 +280,7 @@ const Home = () => {
               },
               {
                 name: "Skyb Overseas Consultants",
-                sub: "(Pvt) Ltd",
+                sub: "",
                 desc: "Premier guidance for global education and career pathways.",
                 logo: SkybLogo,
                 color: "indigo",
