@@ -1,5 +1,5 @@
 import { Helmet } from "react-helmet-async";
-import { motion } from "framer-motion";
+import { motion as Motion } from "framer-motion";
 import { Mail, Phone, MapPin, Send } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -27,10 +27,13 @@ const Contact = () => {
       last_name: e.target.lastName.value,
       from_name: `${e.target.firstName.value} ${e.target.lastName.value}`,
       email: e.target.email.value,
+      whatsapp: e.target.whatsapp.value,
       company: e.target.company.value,
       message: e.target.message.value,
       reply_to: e.target.email.value,
     };
+
+    console.log('Sending email with params:', templateParams);
 
     try {
       // Send to Company
@@ -66,7 +69,7 @@ const Contact = () => {
 
       <section className="pt-32 pb-16 hero-gradient">
         <div className="container mx-auto px-4">
-          <motion.div
+          <Motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             className="max-w-3xl mx-auto text-center"
@@ -77,7 +80,7 @@ const Contact = () => {
             <p className="text-xl text-primary-foreground/70">
               Ready to transform your enterprise? Let's talk.
             </p>
-          </motion.div>
+          </Motion.div>
         </div>
       </section>
 
@@ -85,7 +88,7 @@ const Contact = () => {
         <div className="container mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-16 max-w-6xl mx-auto">
             {/* Contact Info */}
-            <motion.div
+            <Motion.div
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
@@ -134,10 +137,10 @@ const Contact = () => {
                   </div>
                 </div>
               </div>
-            </motion.div>
+            </Motion.div>
 
             {/* Contact Form */}
-            <motion.div
+            <Motion.div
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
@@ -149,28 +152,34 @@ const Contact = () => {
                   <div className="grid sm:grid-cols-2 gap-4">
                     <div className="space-y-2">
                       <Label htmlFor="firstName">First Name</Label>
-                      <Input id="firstName" placeholder="first name" required />
+                      <Input id="firstName" name="firstName" placeholder="first name" required />
                     </div>
                     <div className="space-y-2">
                       <Label htmlFor="lastName">Last Name</Label>
-                      <Input id="lastName" placeholder="last name" required />
+                      <Input id="lastName" name="lastName" placeholder="last name" required />
                     </div>
                   </div>
 
                   <div className="space-y-2">
                     <Label htmlFor="email">Email</Label>
-                    <Input id="email" type="email" placeholder="example@gmail.com" required />
+                    <Input id="email" name="email" type="email" placeholder="example@gmail.com" required />
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label htmlFor="whatsapp">WhatsApp Number</Label>
+                    <Input id="whatsapp" name="whatsapp" type="tel" placeholder="+94 77 123 4567" required />
                   </div>
 
                   <div className="space-y-2">
                     <Label htmlFor="company">Company</Label>
-                    <Input id="company" placeholder="Your Company" required />
+                    <Input id="company" name="company" placeholder="Your Company" required />
                   </div>
 
                   <div className="space-y-2">
                     <Label htmlFor="message">Message</Label>
                     <Textarea 
                       id="message" 
+                      name="message" 
                       placeholder="Tell us about your project..."
                       rows={4}
                       required
@@ -187,7 +196,7 @@ const Contact = () => {
                   </Button>
                 </div>
               </form>
-            </motion.div>
+            </Motion.div>
           </div>
         </div>
       </section>
