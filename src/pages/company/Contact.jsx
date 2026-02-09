@@ -17,20 +17,36 @@ const Contact = () => {
     e.preventDefault();
     setIsSubmitting(true);
 
-        const serviceID = 'service_gamwh5i';
-        const templateIDToCompany = 'template_srzk65p';
-        const templateIDToCustomer = 'template_r0mj5x6';
-        const publicKey = 'D84ebfog3xQ0S44I8';
+    const serviceID = 'service_gamwh5i';
+    const templateIDToCompany = 'template_srzk65p';
+    const templateIDToCustomer = 'template_r0mj5x6';
+    const publicKey = 'D84ebfog3xQ0S44I8';
+
+    // Capture values directly from the form elements using their 'name' attributes
+    const formData = new FormData(e.target);
+    
+    // Helper to capitalize names properly
+    const capitalize = (str) => {
+      if (!str) return '';
+      return str.split(' ').map(word => 
+        word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
+      ).join(' ');
+    };
+
+    const firstName = capitalize(formData.get('firstName'));
+    const lastName = capitalize(formData.get('lastName'));
+    const company = capitalize(formData.get('company'));
+    const email = formData.get('email')?.toLowerCase();
 
     const templateParams = {
-      first_name: e.target.firstName.value,
-      last_name: e.target.lastName.value,
-      from_name: `${e.target.firstName.value} ${e.target.lastName.value}`,
-      email: e.target.email.value,
-      whatsapp: e.target.whatsapp.value,
-      company: e.target.company.value,
-      message: e.target.message.value,
-      reply_to: e.target.email.value,
+      first_name: firstName,
+      last_name: lastName,
+      from_name: `${firstName} ${lastName}`,
+      email: email,
+      whatsapp: formData.get('whatsapp'), // This matches your input name="whatsapp"
+      company: company,
+      message: formData.get('message'),
+      reply_to: email,
     };
 
     console.log('Sending email with params:', templateParams);
@@ -136,6 +152,20 @@ const Contact = () => {
                     </p>
                   </div>
                 </div>
+              </div>
+
+              {/* Map */}
+              <div className="mt-8 rounded-xl overflow-hidden border border-border shadow-md h-56 w-full relative">
+                <iframe 
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.785237274059!2d79.8774!3d6.9163!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNsKwNTQnNTguNyJOIDc5wrA1MicyOC42IkU!5e0!3m2!1sen!2slk!4v1625651234567!5m2!1sen!2slk"
+                  width="100%" 
+                  height="100%" 
+                  style={{ border: 0 }} 
+                  allowFullScreen="" 
+                  loading="lazy" 
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="Company Location"
+                ></iframe>
               </div>
             </Motion.div>
 

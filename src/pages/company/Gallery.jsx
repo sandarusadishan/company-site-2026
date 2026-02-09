@@ -19,52 +19,12 @@ const Gallery = () => {
       size: "large"
     },
     {
-      id: 2,
-      category: "Team",
-      src: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=800",
-      title: "Engineering Brainstorm",
-      location: "Meeting Room A",
-      size: "normal"
-    },
-    {
-      id: 3,
-      category: "Events",
-      src: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&q=80&w=800",
-      title: "Tech Summit 2025",
-      location: "Main Auditorium",
-      size: "tall"
-    },
-    {
       id: 4,
       category: "Office",
       src: "https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&q=80&w=800",
       title: "Open Workspace",
       location: "Zone B",
       size: "normal"
-    },
-    {
-      id: 5,
-      category: "Team",
-      src: "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&q=80&w=800",
-      title: "Friday Happy Hour",
-      location: "Rooftop Lounge",
-      size: "tall"
-    },
-    {
-      id: 6,
-      category: "Awards",
-      src: "https://images.unsplash.com/photo-1531545514256-b1400bc00f31?auto=format&fit=crop&q=80&w=800",
-      title: "Best Workplace Award",
-      location: "Gala Dinner",
-      size: "normal"
-    },
-    {
-      id: 7,
-      category: "Events",
-      src: "https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&q=80&w=1200",
-      title: "Annual Hackathon",
-      location: "Innovation Lab",
-      size: "large"
     },
     {
       id: 8,
