@@ -266,7 +266,7 @@ const Home = () => {
                 desc: "Enterprise-grade Business Management Solutions tailored for scale.",
                 logo: softVisionLogo,
                 color: "blue",
-                link: "https://softvision.lk/",
+                link: "https://busy.lk/",
                 icon: Shield
               },
               {
